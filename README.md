@@ -1,6 +1,6 @@
 
-[![Build Status](https://travis-ci.org/w11k/Tydux.svg?branch=master)](https://travis-ci.org/w11k/Tydux-angular)
-[![npm version](https://badge.fury.io/js/%40w11k%2Ftydux.svg)](https://badge.fury.io/js/%40w11k%2Ftydux-angular)
+[![Build Status](https://travis-ci.org/w11k/Tydux-angular.svg?branch=master)](https://travis-ci.org/w11k/Tydux-angular)
+[![npm version](https://badge.fury.io/js/%40w11k%2Ftydux-angular.svg)](https://badge.fury.io/js/%40w11k%2Ftydux-angular)
 
 ![Tydux Logo](https://raw.githubusercontent.com/w11k/Tydux/master/doc/tydux_logo.png)
 
