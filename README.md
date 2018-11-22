@@ -14,7 +14,7 @@
 npm install @w11k/tydux-angular
 ```
 
-**Define your intial state**
+**Define your initial state**
 
 ```
 // your application state
@@ -28,12 +28,27 @@ export function createInitialState() {
 export type AppState = ReturnType<typeof createInitialState>;
 ```
 
+**Create a Tydux configuration factory function**
+
+```
+export function createTyduxConfig() {
+  return {
+    storeEnhancer: environment.production ? undefined : composeWithDevTools(),
+    developmentMode: !environment.production
+  };
+}
+```
+
+
 **Add Tydux Angular module**
 
 ```
 @NgModule({
   imports: [
-    TyduxModule.forRoot(createInitialState(), composeWithDevTools())
+    TyduxModule.forRoot(
+        createInitialState(),   // create initial state 
+        createTyduxConfig       // !!! do not call factory function !!!
+    )
   ],
   ...
 })
@@ -50,7 +65,7 @@ export class MyFacade extends Facade<State1, MyCommands> {
 
   constructor(tydux: TyduxStore<AppState>) {         // inject TyduxStore
     super(tydux.createRootMountPoint('state1'),      // the facade's mount point
-          'State1',  
+          'State1',                                  // action's type prefix
           new MyCommands());
   }
 
@@ -61,9 +76,6 @@ export class MyFacade extends Facade<State1, MyCommands> {
 
 ```
 @NgModule({
-  imports: [
-    TyduxModule.forRoot(createInitialState(), composeWithDevTools())
-  ],
   providers: [
     MyFacade                                        // add a provider for your facade
   ],
