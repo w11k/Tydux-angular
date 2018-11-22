@@ -24,9 +24,9 @@ export interface TyduxModuleConfiguration {
             provide: REDUX_STORE,
             deps: [tyduxModuleConfiguration, TyduxReducerBridge],
             useFactory: (tmc: TyduxModuleConfiguration, bridge: TyduxReducerBridge) => {
-                const config = tmc.configFactory ? tmc.configFactory() : {};
+                const config = tmc.configFactory !== undefined ? tmc.configFactory() : {};
                 const initialState = Object.assign({}, tmc.initialState);
-                const reducer = config.reducer ? config.reducer : (state: any) => state;
+                const reducer = config.reducer !== undefined ? config.reducer : (state: any) => state;
 
                 if (config.developmentMode !== undefined) {
                     enableTyduxDevelopmentMode(config.developmentMode);
