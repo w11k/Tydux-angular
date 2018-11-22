@@ -1,3 +1,5 @@
 .idea
 dev
 spec
+/compiled
+*.ngFactory.ts
