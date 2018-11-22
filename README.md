@@ -31,7 +31,7 @@ export type AppState = ReturnType<typeof createInitialState>;
 **Create a Tydux configuration factory function**
 
 ```
-export function createTyduxConfig() {
+export function createTyduxConfig(): TyduxConfiguration {
   return {
     storeEnhancer: environment.production ? undefined : composeWithDevTools(),
     developmentMode: !environment.production

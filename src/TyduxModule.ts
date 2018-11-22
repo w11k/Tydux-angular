@@ -7,13 +7,9 @@ export const tyduxModuleConfiguration = new InjectionToken("TyduxModuleConfigura
 
 export interface TyduxConfiguration {
     reducer?: Reducer;
+    preloadedState?: any;
     storeEnhancer?: StoreEnhancer;
     developmentMode?: boolean;
-}
-
-export interface TyduxModuleConfiguration {
-    initialState: any;
-    configFactory?: () => TyduxConfiguration;
 }
 
 @NgModule({
@@ -23,9 +19,9 @@ export interface TyduxModuleConfiguration {
         {
             provide: REDUX_STORE,
             deps: [tyduxModuleConfiguration, TyduxReducerBridge],
-            useFactory: (tmc: TyduxModuleConfiguration, bridge: TyduxReducerBridge) => {
-                const config = tmc.configFactory !== undefined ? tmc.configFactory() : {};
-                const initialState = Object.assign({}, tmc.initialState);
+            useFactory: (configFactory: () => TyduxConfiguration, bridge: TyduxReducerBridge) => {
+                const config = configFactory();
+                const initialState = Object.assign({}, config.preloadedState);
                 const reducer = config.reducer !== undefined ? config.reducer : (state: any) => state;
 
                 if (config.developmentMode !== undefined) {
@@ -49,14 +45,13 @@ export interface TyduxModuleConfiguration {
 })
 export class TyduxModule {
 
-    static forRoot(initialState: any = {},
-                   configFactory?: () => TyduxConfiguration): ModuleWithProviders {
+    static forRoot(configFactory?: () => TyduxConfiguration): ModuleWithProviders {
         return {
             ngModule: TyduxModule,
             providers: [
                 {
                     provide: tyduxModuleConfiguration,
-                    useValue: {initialState, configFactory} as TyduxModuleConfiguration
+                    useValue: configFactory !== undefined ? configFactory : () => ({})
                 }
             ]
         };
