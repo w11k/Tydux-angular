@@ -33,6 +33,7 @@ export type AppState = ReturnType<typeof createInitialState>;
 ```
 export function createTyduxConfig(): TyduxConfiguration {
   return {
+    preloadedState: createInitialState(),
     storeEnhancer: environment.production ? undefined : composeWithDevTools(),
     developmentMode: !environment.production
   };
@@ -45,10 +46,7 @@ export function createTyduxConfig(): TyduxConfiguration {
 ```
 @NgModule({
   imports: [
-    TyduxModule.forRoot(
-        createInitialState(),   // create initial state 
-        createTyduxConfig       // !!! do not call factory function !!!
-    )
+    TyduxModule.forRoot(createTyduxConfig) // !!! do not call factory function !!!
   ],
   ...
 })
