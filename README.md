@@ -58,7 +58,7 @@ export class AppModule {
 **Mark your facade as Injectable() and inject the TyduxStore**
 
 ```
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MyFacade extends Facade<State1, MyCommands> {
 
   constructor(tydux: TyduxStore<AppState>) {         // inject TyduxStore
@@ -69,20 +69,3 @@ export class MyFacade extends Facade<State1, MyCommands> {
 
 }
 ```
-
-**Provide the facade**
-
-```
-@NgModule({
-  providers: [
-    MyFacade                                        // add a provider for your facade
-  ],
-  ...
-})
-export class AppModule {
-}
-```
-
-
-
-
