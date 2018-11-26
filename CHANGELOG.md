@@ -1,4 +1,9 @@
 
+# Version 10.0.0
+
+- updated to Tydux 10.0.0
+
+
 # Version 9.3.5
 
 - merged configuration parameter preloadedState and initialState

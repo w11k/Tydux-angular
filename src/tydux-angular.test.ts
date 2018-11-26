@@ -24,7 +24,7 @@ describe("Tydux Angular", function () {
         const values: any = [];
         facade.select((currentState) => {
             values.push(currentState);
-        }).unbounded().subscribe();
+        }).subscribe();
 
         facade.actionInc();
         facade.actionInc();

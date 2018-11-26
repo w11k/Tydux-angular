@@ -1,6 +1,6 @@
 {
   "name": "@w11k/tydux-angular",
-  "version": "9.3.6",
+  "version": "10.0.0",
   "main": "./dist/index.js",
   "module": "./dist/_esm5/index.js",
   "typings": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "@angular/common": ">= 6.x.x"
   },
   "peerDependencies": {
-    "@w11k/tydux": "9.3.x",
+    "@w11k/tydux": "10.x.x",
     "rxjs": ">= 6.2.0",
     "@angular/core": ">= 6.x.x",
     "@angular/common": ">= 6.x.x"
@@ -27,7 +27,7 @@
     "@types/chai": "4.1.2",
     "@types/es6-shim": "0.31.35",
     "@types/mocha": "2.2.48",
-    "@w11k/tydux": "9.3.x",
+    "@w11k/tydux": "10.x.x",
     "chai": "4.1.2",
     "del-cli": "1.1.0",
     "esm": "3.0.82",
